@@ -2,8 +2,131 @@
 # Input
 welchen wert hat die unendliche reihe 1/4! + 4!/8! + 8!/12! + 12!/16! + ... ?
 
+# Antwort
+The given infinite series is $\frac{1}{4!} + \frac{4!}{8!} + \frac{8!}{12!} + \frac{12!}{16!} + \cdots $. 
 
+First, we recognize the general term of the series as $\frac{(4(n-1))!}{(4n)!}$ for $\geq 1$. This can be simplified to $\frac{1}{(4n)(4n-1)(4n-2)(4n-3)}$.
 
+We decompose the general term using partial fractions:
+$$
+\frac{1}{(4n)(4n-1)(4n-2)(4n-3)} = \frac{1}{6} \left( \frac{1}{4n-3} - \frac{3}{4n-2} + \frac{3}{4n-1} - \frac{1}{4n} \right)
+$$
+
+Rewriting the series in terms of these partial fractions, we get:
+$$
+\sum_{n=1}^{\infty} \frac{1}{6} \left( \frac{1}{4n-3} - \frac{3}{4n-2} + \frac{3}{4n-1} - \frac{1}{4n} \right)
+$$
+
+We then reindex the series and express it as an integral. By transforming the sums into integrals and simplifying, we find:
+$$
+\int_0^1 \left( \frac{(1 - t)^2}{(1 + t)(1 + t^2)} \right) dt
+$$
+
+This integral is evaluated by splitting it into partial fractions and integrating term by term. The result of the integral is:
+$$
+2 \ln 2 - \left( \frac{1}{2} \ln 2 + \frac{\pi}{4} \right) = \frac{3}{2} \ln 2 - \frac{\pi}{4}
+$$
+
+Finally, multiplying by $\frac{1}{6}$ gives the value of the series:
+$$
+\frac{1}{6} \left( \frac{3}{2} \ln 2 - \frac{\pi}{4} \right) = \frac{6 \ln 2 - \pi}{24}
+$$
+
+Thus, the value of the infinite series is $\boxed{\dfrac{6\ln 2 - \pi}{24}}$.
+
+# Input
+Mir ist nicht ganz klar, wie man von den partial fractions auf das integral kommt.
+
+# Antwort
+Um von der Partialbruchzerlegung auf das Integral zu kommen, betrachten wir jeden Term der Reihe als Integral und summieren anschließend. Hier die detaillierte Erklärung:
+
+---
+
+### **Schritt 1: Jeden Partialbruch als Integral darstellen**
+Wir nutzen die Identität:
+$$
+\frac{1}{k} = \int_0^1 t^{k-1} \, dt \quad \text{für } k > 0.
+$$
+Damit schreiben wir jeden Term der Partialbruchzerlegung als Integral:
+$$
+\frac{1}{4n-3} = \int_0^1 t^{4n-4} \, dt, \quad \frac{1}{4n-2} = \int_0^1 t^{4n-3} \, dt, \quad \text{usw.}
+$$
+
+---
+
+### **Schritt 2: Die Reihe in ein Integral umwandeln**
+Die ursprüngliche Reihe wird zu:
+$$
+\sum_{n=1}^\infty \frac{1}{6} \left( \int_0^1 t^{4n-4} \, dt - 3 \int_0^1 t^{4n-3} \, dt + 3 \int_0^1 t^{4n-2} \, dt - \int_0^1 t^{4n-1} \, dt \right).
+$$
+Da alle Integrale über denselben Bereich \( [0,1] \) laufen, vertauschen wir Summe und Integral:
+$$
+\frac{1}{6} \int_0^1 \sum_{n=1}^\infty \left( t^{4n-4} - 3t^{4n-3} + 3t^{4n-2} - t^{4n-1} \right) dt.
+$$
+
+---
+
+### **Schritt 3: Die geometrische Reihe erkennen**
+1. **Faktor $t^{4n-4}$ ausklammern**:
+   $$
+   \sum_{n=1}^\infty t^{4n-4} \cdot \left( 1 - 3t + 3t^2 - t^3 \right).
+   $$
+2. **Die Summe $\sum_{n=1}^\infty t^{4n-4}$ ist eine geometrische Reihe**:
+   $$
+   \sum_{n=1}^\infty t^{4(n-1)} = \sum_{k=0}^\infty t^{4k} = \frac{1}{1 - t^4} \quad \text{für } |t| < 1.
+   $$
+3. **Der Faktor $1 - 3t + 3t^2 - t^3$ vereinfacht sich zu**:
+   $$
+   (1 - t)^3.
+   $$
+
+Damit wird der Integrand:
+$$
+\frac{(1 - t)^3}{1 - t^4}.
+$$
+
+---
+
+### **Schritt 4: Den Integranden vereinfachen**
+1. **Faktorisiere $1 - t^4$**:
+   $$
+   1 - t^4 = (1 - t)(1 + t)(1 + t^2).
+   $$
+2. **Kürze $(1 - t)$ im Zähler und Nenner**:
+   $$
+   \frac{(1 - t)^3}{(1 - t)(1 + t)(1 + t^2)} = \frac{(1 - t)^2}{(1 + t)(1 + t^2)}.
+   $$
+
+Der Integrand reduziert sich also auf:
+$$
+\frac{(1 - t)^2}{(1 + t)(1 + t^2)}.
+$$
+
+---
+
+### **Schritt 5: Das Integral lösen**
+Das verbleibende Integral ist:
+$$
+\int_0^1 \frac{(1 - t)^2}{(1 + t)(1 + t^2)} \, dt.
+$$
+Durch Partialbruchzerlegung oder Substitution (z. B. $u = 1 + t$) ergibt sich das Resultat:
+$$
+\frac{3}{2} \ln 2 - \frac{\pi}{4}.
+$$
+Multipliziert mit $\frac{1}{6}$ erhalten wir die Lösung der Reihe:
+$$
+\boxed{\dfrac{6\ln 2 - \pi}{24}}.
+$$
+
+---
+
+### **Zusammenfassung**
+- Jeder Partialbruch wurde als Integral geschrieben.
+- Die Summe wurde mit der geometrischen Reihe vereinfacht.
+- Der Integrand wurde durch algebraische Umformungen reduziert.
+- Das resultierende Integral wurde gelöst. 
+
+Dieser Prozess verbindet die Partialbruchzerlegung mit dem Integral über die Umwandlung der Reihe in eine geometrische Summe.
 
 
 
