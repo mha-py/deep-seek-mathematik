@@ -8,29 +8,29 @@ The given infinite series is $\frac{1}{4!} + \frac{4!}{8!} + \frac{8!}{12!} + \f
 First, we recognize the general term of the series as $\frac{(4(n-1))!}{(4n)!}$ for $\geq 1$. This can be simplified to $\frac{1}{(4n)(4n-1)(4n-2)(4n-3)}$.
 
 We decompose the general term using partial fractions:
-$$
+$
 \frac{1}{(4n)(4n-1)(4n-2)(4n-3)} = \frac{1}{6} \left( \frac{1}{4n-3} - \frac{3}{4n-2} + \frac{3}{4n-1} - \frac{1}{4n} \right)
-$$
+$
 
 Rewriting the series in terms of these partial fractions, we get:
-$$
+$
 \sum_{n=1}^{\infty} \frac{1}{6} \left( \frac{1}{4n-3} - \frac{3}{4n-2} + \frac{3}{4n-1} - \frac{1}{4n} \right)
-$$
+$
 
 We then reindex the series and express it as an integral. By transforming the sums into integrals and simplifying, we find:
-$$
+$
 \int_0^1 \left( \frac{(1 - t)^2}{(1 + t)(1 + t^2)} \right) dt
-$$
+$
 
 This integral is evaluated by splitting it into partial fractions and integrating term by term. The result of the integral is:
-$$
+$
 2 \ln 2 - \left( \frac{1}{2} \ln 2 + \frac{\pi}{4} \right) = \frac{3}{2} \ln 2 - \frac{\pi}{4}
-$$
+$
 
 Finally, multiplying by $\frac{1}{6}$ gives the value of the series:
-$$
+$
 \frac{1}{6} \left( \frac{3}{2} \ln 2 - \frac{\pi}{4} \right) = \frac{6 \ln 2 - \pi}{24}
-$$
+$
 
 Thus, the value of the infinite series is $\boxed{\dfrac{6\ln 2 - \pi}{24}}$.
 
